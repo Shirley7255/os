@@ -23,8 +23,6 @@
   bootstacktop:
   ```
 
-  
-
 - **内存分配说明**：
   `.space KSTACKSIZE` 分配一段连续空间作为内核栈。
   `bootstacktop` 标记这段空间的高地址，即栈顶位置。
@@ -102,13 +100,13 @@
 
 ## 实验过程
 
-​	首先，用`make clean && make -j$(nproc)`把项目重新编译一遍，然后用QEMU加载并挂起在第一条指令，等待GDB的调试。
+​	首先，用`make debug`加载QEMU并挂起在第一条指令，等待GDB的调试。
 
-![image-20251003201613792](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20251003201613792.png)
+![image-20251010125443251](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20251010125443251.png)
 
-​	重新打开一个终端，利用如图所示的命令让GDB加载内核符号文件，连接本地1234端口上的QEMU，从而接管被挂起的CPU。
+​	重新打开一个终端，利用`make gdb`让GDB加载核符号文件，连接本地1234端口上的QEMU，从而接管被挂起的CPU。
 
-![image-20251003202810063](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20251003202810063.png)
+![image-20251010125604391](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20251010125604391.png)
 
 ​	输入指令`x/10i $pc`让GDB从当前PC所指的位置开始，打印即将执行的10条指令。
 
